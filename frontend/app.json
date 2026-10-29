@@ -6,11 +6,6 @@
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./src/assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#6C63FF"
-    },
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -43,7 +38,16 @@
         }
       ],
       "expo-secure-store",
-      "expo-status-bar"
+      "expo-status-bar",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./src/assets/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#6C63FF"
+        }
+      ]
     ],
     "web": {
       "bundler": "metro",
@@ -53,7 +57,10 @@
       "favicon": "./src/assets/icon.png"
     },
     "extra": {
-      "apiUrl": "https://eventify-liart-rho.vercel.app/api"
+      "apiUrl": "https://eventify-liart-rho.vercel.app/api",
+      "eas": {
+        "projectId": "45669b41-d547-4d83-95bb-95740a49cdf2"
+      }
     }
   }
 }
