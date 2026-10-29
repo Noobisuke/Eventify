@@ -33,6 +33,15 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
 
+// Static files (before rate limiters and DB middleware so images load fast)
+// Sample images ship with the deployment (read-only)
+app.use('/uploads/samples', express.static(path.join(__dirname, 'uploads', 'samples')));
+
+// Full uploads folder only works locally (Vercel's disk is read-only)
+if (!process.env.VERCEL) {
+  app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+}
+
 // Rate limiting
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -51,18 +60,13 @@ const authLimiter = rateLimit({
 });
 app.use('/api/auth/', authLimiter);
 
-// Local uploads only work on your own machine (Vercel's disk is read-only)
-if (!process.env.VERCEL) {
-  app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-}
-
-// Health check (works even if the DB is down)
-app.get('/api/health', (req, res) => {
-  res.status(200).json({ success: true, message: 'API is running', timestamp: new Date().toISOString() });
-});
-
+// Root + health check (work even if the DB is down)
 app.get('/', (req, res) => {
   res.status(200).json({ success: true, message: 'Local Event App API is running' });
+});
+
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ success: true, message: 'API is running', timestamp: new Date().toISOString() });
 });
 
 // Make sure MongoDB is connected before any route runs
