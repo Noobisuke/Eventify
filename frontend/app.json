@@ -53,7 +53,7 @@
       "favicon": "./src/assets/icon.png"
     },
     "extra": {
-      "apiUrl": ""
+      "apiUrl": "https://eventify-liart-rho.vercel.app/api"
     }
   }
 }
