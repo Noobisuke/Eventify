@@ -7,18 +7,22 @@ import { AuthProvider } from './src/context/AuthContext';
 import { ThemeProvider } from './src/context/ThemeContext';
 import { EventProvider } from './src/context/EventContext';
 import RootNavigator from './src/navigation/RootNavigator';
+import WebShell from './src/components/WebShell';
 
 export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <ThemeProvider>
-          <AuthProvider>
-            <EventProvider>
-              <RootNavigator />
-              <Toast />
-            </EventProvider>
-          </AuthProvider>
+          {/* WebShell only does anything in the browser (centres the app in a phone-sized card) */}
+          <WebShell>
+            <AuthProvider>
+              <EventProvider>
+                <RootNavigator />
+                <Toast />
+              </EventProvider>
+            </AuthProvider>
+          </WebShell>
         </ThemeProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

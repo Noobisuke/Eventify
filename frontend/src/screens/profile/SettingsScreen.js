@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   sectionLabel: { fontSize: fontSize.xs, fontWeight: '700', marginBottom: spacing.sm, letterSpacing: 0.5 },
   row: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: spacing.md, borderRadius: radius.md, borderWidth: 1 },
   systemLink: { marginTop: spacing.sm, alignSelf: 'flex-start' },
-  modalOverlay: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.4)' },
-  modalContent: { padding: spacing.xl, borderTopLeftRadius: radius.xl, borderTopRightRadius: radius.xl },
+  modalOverlay: { flex: 1, justifyContent: 'flex-end', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.4)' },
+  modalContent: { width: '100%', maxWidth: 480, padding: spacing.xl, borderTopLeftRadius: radius.xl, borderTopRightRadius: radius.xl },
   modalTitle: { fontSize: fontSize.xl, fontWeight: '800', marginBottom: spacing.md },
 });
