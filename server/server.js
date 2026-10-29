@@ -20,15 +20,11 @@ const notificationRoutes = require('./routes/notificationRoutes');
 
 const app = express();
 
-// Hosting platforms (Render, Railway, Heroku...) put a proxy in front of the app. Without this,
-// every visitor looks like the same IP, so the rate limiter below would count ALL users together.
+// Vercel sits behind a proxy, so keep this for correct client IPs in the rate limiter
 app.set('trust proxy', 1);
 
-// Connect to MongoDB
-connectDB();
-
 // Security & parsing middleware
-app.use(helmet({ crossOriginResourcePolicy: false })); // allow serving uploaded images cross-origin
+app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use(cors({ origin: process.env.CLIENT_URL || '*' }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
@@ -37,16 +33,15 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
 
-// Basic rate limiting to protect auth & write endpoints from abuse
+// Rate limiting
 const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
+  windowMs: 15 * 60 * 1000,
   max: 300,
   standardHeaders: true,
   legacyHeaders: false,
 });
 app.use('/api/', apiLimiter);
 
-// Stricter limit on login / sign-up / code endpoints to slow down password guessing and email spam
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
@@ -56,12 +51,24 @@ const authLimiter = rateLimit({
 });
 app.use('/api/auth/', authLimiter);
 
-// Serve locally-uploaded images (only used when Cloudinary isn't configured)
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// Local uploads only work on your own machine (Vercel's disk is read-only)
+if (!process.env.VERCEL) {
+  app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+}
 
-// Health check
+// Health check (works even if the DB is down)
 app.get('/api/health', (req, res) => {
   res.status(200).json({ success: true, message: 'API is running', timestamp: new Date().toISOString() });
+});
+
+// Make sure MongoDB is connected before any route runs
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    next(err);
+  }
 });
 
 // Mount routes
@@ -77,9 +84,12 @@ app.use('/api/notifications', notificationRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
-});
+// Only start a listening server when NOT on Vercel
+if (!process.env.VERCEL) {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
+  });
+}
 
 module.exports = app;

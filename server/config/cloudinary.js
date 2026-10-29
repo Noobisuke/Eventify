@@ -27,9 +27,16 @@ if (useCloudinary) {
     },
   });
 
-  upload = multer({ storage, limits: { fileSize: 5 * 1024 * 1024 } });
+  upload = multer({ storage, limits: { fileSize: 4 * 1024 * 1024 } });
+} else if (process.env.VERCEL) {
+  // Vercel's disk is read-only, so local storage can't work.
+  // Keep the app booting, but fail clearly when someone tries to upload.
+  console.error('Cloudinary env vars are missing: image uploads are disabled.');
+  const reject = () => (req, res, next) =>
+    next(new Error('Image uploads are not configured on the server.'));
+  upload = { single: reject, array: reject, fields: reject, any: reject };
 } else {
-  // Fallback: local disk storage for development without Cloudinary credentials
+  // Local development fallback: disk storage
   const uploadDir = path.join(__dirname, '..', 'uploads');
   if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 
