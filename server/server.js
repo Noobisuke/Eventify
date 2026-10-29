@@ -61,6 +61,10 @@ app.get('/api/health', (req, res) => {
   res.status(200).json({ success: true, message: 'API is running', timestamp: new Date().toISOString() });
 });
 
+app.get('/', (req, res) => {
+  res.status(200).json({ success: true, message: 'Local Event App API is running' });
+});
+
 // Make sure MongoDB is connected before any route runs
 app.use(async (req, res, next) => {
   try {
