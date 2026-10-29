@@ -1,0 +1,24 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Env
+.env
+*.env.local
+
+# Expo
+frontend/.expo/
+frontend/dist/
+frontend/web-build/
+
+# macOS
+.DS_Store
+
+# Uploads (local dev image storage) - ignore photos organizers upload while developing,
+# but KEEP the sample photos in uploads/samples so they are deployed with the app.
+server/uploads/*
+!server/uploads/.gitkeep
+!server/uploads/samples/
+
+# Logs
+*.log

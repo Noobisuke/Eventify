@@ -1,0 +1,86 @@
+{
+  "Music": [
+    "/uploads/samples/music-1.jpg",
+    "/uploads/samples/music-2.jpg",
+    "/uploads/samples/music-3.jpg",
+    "/uploads/samples/music-4.jpg",
+    "/uploads/samples/music-5.jpg"
+  ],
+  "Workshop": [
+    "/uploads/samples/workshop-1.jpg",
+    "/uploads/samples/workshop-2.jpg",
+    "/uploads/samples/workshop-3.jpg",
+    "/uploads/samples/workshop-4.jpg",
+    "/uploads/samples/workshop-5.jpg"
+  ],
+  "Festival": [
+    "/uploads/samples/festival-1.jpg",
+    "/uploads/samples/festival-2.jpg",
+    "/uploads/samples/festival-3.jpg",
+    "/uploads/samples/festival-4.jpg",
+    "/uploads/samples/festival-5.jpg"
+  ],
+  "Sports": [
+    "/uploads/samples/sports-1.jpg",
+    "/uploads/samples/sports-2.jpg",
+    "/uploads/samples/sports-3.jpg",
+    "/uploads/samples/sports-4.jpg",
+    "/uploads/samples/sports-5.jpg"
+  ],
+  "Food": [
+    "/uploads/samples/food-1.jpg",
+    "/uploads/samples/food-2.jpg",
+    "/uploads/samples/food-3.jpg",
+    "/uploads/samples/food-4.jpg",
+    "/uploads/samples/food-5.jpg"
+  ],
+  "Education": [
+    "/uploads/samples/education-1.jpg",
+    "/uploads/samples/education-2.jpg",
+    "/uploads/samples/education-3.jpg",
+    "/uploads/samples/education-4.jpg",
+    "/uploads/samples/education-5.jpg"
+  ],
+  "Meetup": [
+    "/uploads/samples/meetup-1.jpg",
+    "/uploads/samples/meetup-2.jpg",
+    "/uploads/samples/meetup-3.jpg",
+    "/uploads/samples/meetup-4.jpg",
+    "/uploads/samples/meetup-5.jpg"
+  ],
+  "Technology": [
+    "/uploads/samples/technology-1.jpg",
+    "/uploads/samples/technology-2.jpg",
+    "/uploads/samples/technology-3.jpg",
+    "/uploads/samples/technology-4.jpg",
+    "/uploads/samples/technology-5.jpg"
+  ],
+  "Business": [
+    "/uploads/samples/business-1.jpg",
+    "/uploads/samples/business-2.jpg",
+    "/uploads/samples/business-3.jpg",
+    "/uploads/samples/business-4.jpg",
+    "/uploads/samples/business-5.jpg"
+  ],
+  "Art": [
+    "/uploads/samples/art-1.jpg",
+    "/uploads/samples/art-2.jpg",
+    "/uploads/samples/art-3.jpg",
+    "/uploads/samples/art-4.jpg",
+    "/uploads/samples/art-5.jpg"
+  ],
+  "Culture": [
+    "/uploads/samples/culture-1.jpg",
+    "/uploads/samples/culture-2.jpg",
+    "/uploads/samples/culture-3.jpg",
+    "/uploads/samples/culture-4.jpg",
+    "/uploads/samples/culture-5.jpg"
+  ],
+  "Charity": [
+    "/uploads/samples/charity-1.jpg",
+    "/uploads/samples/charity-2.jpg",
+    "/uploads/samples/charity-3.jpg",
+    "/uploads/samples/charity-4.jpg",
+    "/uploads/samples/charity-5.jpg"
+  ]
+}
